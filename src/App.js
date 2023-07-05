@@ -88,6 +88,8 @@ function App() {
               <button className="btn btn-outline-success" type="submit">
                 Search
               </button>
+              <a href="#">Home</a>
+              <a href="#">Teacher</a>
             </form>
           </div>
         </div>
