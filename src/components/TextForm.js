@@ -1,16 +1,22 @@
 import React, {useState} from 'react'
 
 export default function TextForm(props) {
-    const [text, setText] = useState('Hey, Khush');
+    const [ text, setText] = useState('Hey, Khush');
     const handleupClick = () => {
         // console.log('Hey Sweetu..' + text)
-        let newText = text.toUpperCase();
+        let newText = text.toString().toUpperCase();
         setText(newText)
     }
 
     const handlelowerClick = () => {
         // console.log('Hey Sweetu..' + text)
-        let newText = text.toLowerCase();
+        let newText = text.toString().toLowerCase();
+        setText(newText)
+    }
+
+    const handleclearClick = () => {
+        // console.log('Hey Sweetu..' + text)
+        let newText = "";
         setText(newText)
     }
 
@@ -18,6 +24,13 @@ export default function TextForm(props) {
         // console.log('Hey bebs..')
         setText(event.target.value)
     }
+    // const [previousText, setPreviousText] = useState('');
+
+    const handleundoClick = (steps = 1) => {
+        console.log(Number(text));
+        // setPreviousText(text); // Store the current text as the previous text
+        setText(Math.max(0, Number(text) - (Number(steps) || 1)));
+      };
     // setText('Hey,Chirag');
   return (
     <div>
@@ -29,11 +42,12 @@ export default function TextForm(props) {
         </div>
         <button className="btn btn-primary mx-2" onClick={handleupClick}>Convert to uppercase</button>
         <button className="btn btn-primary mx-2" onClick={handlelowerClick}>Convert to lowercase</button>
-
+        <button className="btn btn-primary mx-2" onClick={handleclearClick}> Clear text</button>
+        <button className="btn btn-primary mx-2" onClick={handleundoClick}> Undo text</button>
         <div className="container my-3">
             <h1>Your text summary</h1>
-            <p>{text.split(" ").length} words and {text.length} character</p>
-            <p>{0.008 * text.split(" ").length} Minutes read</p>
+            <p>{text.toString().split(" ").length} words and {text.length} character</p>
+            <p>{0.008 * text.toString().split(" ").length} Minutes read</p>
             <h1>Preview</h1>
             <p>{text}</p>
         </div>
