@@ -16,7 +16,7 @@ export default function About() {
                 color : 'white',
                 backgroundColor : 'black'
             })
-            setBtnText('Enable Dark Mode');
+            setBtnText('Disable Dark Mode');
         }else{
             setMyStyle({
                 color : 'black',
@@ -70,7 +70,7 @@ export default function About() {
             </div>
         </div>
         <div className='container my-3'>
-            <button type="button" className="btn btn-primary" onClick={toggleButton}>Enable Dark mode</button>
+            <button type="button" className="btn btn-primary" onClick={toggleButton}>{btnText}</button>
         </div>
     </div>
   )

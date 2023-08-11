@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 export default function TextForm(props) {
-    const [ text, setText] = useState('Hey, Khush');
+    const [ text, setText] = useState("");
     const handleupClick = () => {
         // console.log('Hey Sweetu..' + text)
         let newText = text.toString().toUpperCase();
@@ -30,7 +30,16 @@ export default function TextForm(props) {
         console.log(Number(text));
         // setPreviousText(text); // Store the current text as the previous text
         setText(Math.max(0, Number(text) - (Number(steps) || 1)));
-      };
+      }
+
+      const handlecopyClick = () => {
+        navigator.clipboard.writeText(text.toString());
+      }
+
+      const handleremoveSpaceClick = () => {
+        let newText = text.split(/[ ]+/);
+        setText(newText.join(" "));
+      }
     // setText('Hey,Chirag');
   return (
     <div>
@@ -38,12 +47,15 @@ export default function TextForm(props) {
         
         <div className="mb-3">
             {/* <label for="exampleFormControlTextarea1" className="form-label">Example textarea</label> */}
-            <textarea className="form-control" value={text} onChange={handleonchange} id="exampleFormControlTextarea1" rows="8"></textarea>
+            <textarea className="form-control" value={text} onChange={handleonchange} id="mybox" rows="8"></textarea>
         </div>
         <button className="btn btn-primary mx-2" onClick={handleupClick}>Convert to uppercase</button>
         <button className="btn btn-primary mx-2" onClick={handlelowerClick}>Convert to lowercase</button>
         <button className="btn btn-primary mx-2" onClick={handleclearClick}> Clear text</button>
         <button className="btn btn-primary mx-2" onClick={handleundoClick}> Undo text</button>
+        <button className="btn btn-primary mx-2" onClick={handlecopyClick}> Copy text</button>
+        <button className="btn btn-primary mx-2" onClick={handleremoveSpaceClick}> Extra Space remove </button>
+        
         <div className="container my-3">
             <h1>Your text summary</h1>
             <p>{text.toString().split(" ").length} words and {text.length} character</p>
